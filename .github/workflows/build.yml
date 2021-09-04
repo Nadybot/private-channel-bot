@@ -27,11 +27,14 @@ jobs:
           profile: minimal
           toolchain: nightly
           override: true
+          components: rust-src
 
       - name: Build for x86_64
         run: |
-          cargo build --release
-          cp target/release/private-channel-bot private-channel-bot-linux-x86_64
+          cargo build --release --target=x86_64-unknown-linux-gnu
+          strip target/x86_64-unknown-linux-gnu/release/private-channel-bot
+          cp target/x86_64-unknown-linux-gnu/release/private-channel-bot private-channel-bot-linux-x86_64
+
       - name: Set up Rust for aarch64
         uses: actions-rs/toolchain@v1
         with:
@@ -39,11 +42,14 @@ jobs:
           toolchain: nightly
           target: aarch64-unknown-linux-gnu
           override: true
+          components: rust-src
 
       - name: Build for aarch64
         run: |
           cargo build --release --target=aarch64-unknown-linux-gnu
+          aarch64-linux-gnu-strip target/aarch64-unknown-linux-gnu/release/private-channel-bot
           cp target/aarch64-unknown-linux-gnu/release/private-channel-bot private-channel-bot-linux-aarch64
+
       - name: Set up Rust for armv7
         uses: actions-rs/toolchain@v1
         with:
@@ -51,11 +57,14 @@ jobs:
           toolchain: nightly
           target: armv7-unknown-linux-gnueabihf
           override: true
+          components: rust-src
 
       - name: Build for armv7
         run: |
           cargo build --release --target=armv7-unknown-linux-gnueabihf
+          arm-linux-gnueabihf-strip target/armv7-unknown-linux-gnueabihf/release/private-channel-bot
           cp target/armv7-unknown-linux-gnueabihf/release/private-channel-bot private-channel-bot-linux-armv7
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -78,6 +87,7 @@ jobs:
           mkdir freebsd_sysroot
           curl -s https://download.freebsd.org/ftp/releases/amd64/12.2-RELEASE/base.txz \
               | tar -xJf - -C freebsd_sysroot ./lib ./usr/lib ./usr/libdata ./usr/include ./usr/share/keys ./etc
+
       - name: Set up Rust for FreeBSD x86_64
         uses: actions-rs/toolchain@v1
         with:
@@ -85,11 +95,14 @@ jobs:
           toolchain: nightly
           target: x86_64-unknown-freebsd
           override: true
+          components: rust-src
 
       - name: Build for FreeBSD x86_64
         run: |
           cargo build --release --target=x86_64-unknown-freebsd
+          strip target/x86_64-unknown-freebsd/release/private-channel-bot
           cp target/x86_64-unknown-freebsd/release/private-channel-bot private-channel-bot-freebsd-x86_64
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -110,11 +123,14 @@ jobs:
           profile: minimal
           toolchain: nightly
           override: true
+          components: rust-src
 
       - name: Build
         run: |
-          cargo build --release
-          cp target/release/private-channel-bot private-channel-bot-macos
+          cargo build --release --target=x86_64-apple-darwin
+          strip target/x86_64-apple-darwin/release/highway
+          cp target/x86_64-apple-darwin/release/highway private-channel-bot-macos
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -135,11 +151,13 @@ jobs:
           profile: minimal
           toolchain: nightly
           override: true
+          components: rust-src
 
       - name: Build
         run: |
-          cargo build --release
-          cp target/release/private-channel-bot.exe private-channel-bot-windows.exe
+          cargo build --release --target=x86_64-pc-windows-msvc
+          cp target/x86_64-pc-windows-msvc/release/private-channel-bot.exe private-channel-bot-windows.exe
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
