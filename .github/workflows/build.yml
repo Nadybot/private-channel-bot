@@ -128,8 +128,8 @@ jobs:
       - name: Build
         run: |
           cargo build --release --target=x86_64-apple-darwin
-          strip target/x86_64-apple-darwin/release/highway
-          cp target/x86_64-apple-darwin/release/highway private-channel-bot-macos
+          strip target/x86_64-apple-darwin/release/private-channel-bot
+          cp target/x86_64-apple-darwin/release/private-channel-bot private-channel-bot-macos
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
