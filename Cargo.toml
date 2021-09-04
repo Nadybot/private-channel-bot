@@ -4,13 +4,17 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
 dotenv = "0.15"
-env_logger = { version = "0.9", default-features = false, features = ["termcolor", "atty", "humantime"] }
+env_logger = { version = "0.9", default-features = false, features = [
+    "termcolor",
+    "atty",
+    "humantime"
+] }
 log = "0.4"
-tokio = { version = "1", default-features = false, features = ["rt"] }
-nadylib = { git = "https://github.com/Nadybot/nadylib.git", default-features = false }
+nadylib = { git = "https://github.com/Nadybot/nadylib.git", default-features = false, features = [
+    "sync"
+] }
 
 [profile.release]
 codegen-units = 1
