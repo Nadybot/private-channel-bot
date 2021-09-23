@@ -77,15 +77,15 @@ checksum = "9a3a5bfb195931eeb336b2a7b4d761daec841b97f947d34394601737a7bba5e4"
 
 [[package]]
 name = "leaky-bucket-lite"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e9f5b52e8febacfb795201d1967bd209acbc891c838d98b85156719fa9ad9f6e"
+checksum = "99ca1658d3f76671d80295746ec25a90f3f304b92d48a6cf6e80e95660873575"
 
 [[package]]
 name = "libc"
-version = "0.2.101"
+version = "0.2.102"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3cb00336871be5ed2c8ed44b60ae9959dc5b9f08539422ed43f09e34ecaeba21"
+checksum = "a2a5ac8f984bfcf3a823267e5fde638acc3325f6496633a5da6bb6eb2171e103"
 
 [[package]]
 name = "log"
@@ -99,7 +99,7 @@ dependencies = [
 [[package]]
 name = "nadylib"
 version = "0.1.0"
-source = "git+https://github.com/Nadybot/nadylib.git#10d6cb072611e4d28d95cd4631d6e57c8fb7448d"
+source = "git+https://github.com/Nadybot/nadylib.git#6ae443ea5c342102e0ba8cf70ca8daab599b966c"
 dependencies = [
  "byteorder",
  "getrandom",
