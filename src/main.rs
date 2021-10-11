@@ -9,6 +9,7 @@ use nadylib::{
     ReceivedPacket, Result,
 };
 
+#[inline]
 fn get_var(key: &str) -> String {
     std::env::var(key).unwrap_or_else(|_| {
         error!("{} not set", key);
